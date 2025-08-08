@@ -1,3 +1,11 @@
+"""
+This module provides a simple in-memory data store and a retriever class for searching documents using LLamaIndex.
+
+It includes the following classes:
+- MemoryDataStore: A basic in-memory key-value store for documents.
+- LLamaIndexRetriever: A retriever that uses LLamaIndex to search documents stored in a MemoryDataStore.
+"""
+
 from llama_index import LLamaIndex
 
 class MemoryDataStore:
@@ -6,6 +14,9 @@ class MemoryDataStore:
     """
 
     def __init__(self):
+        """
+        Initializes the MemoryDataStore by creating an empty dictionary to store documents.
+        """
         self.store = {}
 
     def add_document(self, key, document):
@@ -32,7 +43,11 @@ class MemoryDataStore:
 
 class LLamaIndexRetriever:
     """
-    A retriever class that uses LLamaIndex to search for documents in a memory data store.
+    A retriever class that uses LLamaIndex to search for documents.
+
+    This class bridges the gap between a data store and the LLamaIndex search
+    capabilities. It retrieves a document from the provided data store and then
+    uses the LLamaIndex to perform a search on its content.
     """
 
     def __init__(self, index: LLamaIndex, data_store: MemoryDataStore):
